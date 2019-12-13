@@ -984,7 +984,7 @@ a:hover {
     height: 350px !important;
     width: 100% !important;
     border: 0 !important;
-    frameborder: 0 !important
+    /* frameborder: 0 !important */
 }
 
 .contact_margin_svnit {

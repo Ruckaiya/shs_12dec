@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+    *{
+box-sizing:border-box;
+}
+
+body,html{
+height:100%;
+width:100%;
+margin:0px;
+padding:0px;
+background:#fff;
+}
+
+div#loader{
+position:absolute;
+top:calc(50% - 12px);
+width:100%;
+text-align:center;
+}
+
+div#loader > span{
+font-family:'consolas';
+font-size:25px;
+display:inline-block;
+transform:scale(1.5);
+letter-spacing:10px;
+animation:spin 02s linear infinite;
+transition:all 0.3s ease;
+opacity:1;
+color:#fff;
+}
+
+div#loader.clear{
+  opacity:0;
+}
+
+div#loader > span:nth-child(2){
+animation-delay:0.1s;
+}
+
+div#loader > span:nth-child(3){
+animation-delay:0.2s;
+}
+
+div#loader > span:nth-child(4){
+animation-delay:0.3s;
+}
+
+div#loader > span:nth-child(5){
+animation-delay:0.4s;
+}
+
+div#loader > span:nth-child(6){
+animation-delay:0.5s;
+}
+
+div#loader > span:nth-child(7){
+animation-delay:0.6s;
+}
+
+div#loader > span:nth-child(8){
+animation-delay:0.7s;
+}
+
+div#loader > span:nth-child(9){
+animation-delay:0.8s;
+}
+
+
+@keyframes spin{
+50%{
+transform:scaleY(1);
+opacity:0;
+}
+}
+
+.unfold-box {
+  background: RGB(8, 59, 112);
+  -webkit-transition: all 1s cubic-bezier(0.680, 0, 0.265, 1); /* older webkit */
+-webkit-transition: all 1s cubic-bezier(0.680, -2.550, 0.265, 3.550); 
+   -moz-transition: all 1s cubic-bezier(0.680, -2.550, 0.265, 3.550); 
+     -o-transition: all 1s cubic-bezier(0.680, -2.550, 0.265, 3.550); 
+        transition: all 1s cubic-bezier(0.680, -2.550, 0.265, 3.550); /* easeInOutBack */
+  box-sizing: border-box;
+  transform: scale(1);
+  opacity: 1;
+  display: inline-block;
+  /* float: left; */
+}
+
+#unfold-block {
+  height: 100%;
+  width: 100vw;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: all 0.5s ease;
+}
+
+.unfold-box.clear {
+  transform: scale(0);
+  opacity: 0;
+}
+
+#unfold-block.clear {
+  background: transparent;
+}
+.something {
+  position: absolute;
+  font-size: 25px;
+  top: calc(50% - 12px);
+  text-align: center;
+  width: 100%;
+}
+    </style>
+
+<div class="something">
+    Here be the Content
+  </div>
+
+  
+  <script>
+         var _height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+   var _width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+   var _block_height = Math.round(_height / 9);
+   var _block_width = Math.ceil(_width / 16);
+   var _animation_delay = 0.03;
+   var _blocks = "<div id='unfold-block'><st" + "yle> .unfold-box{ width:" + _block_width + "px;" + "height:" + _block_height + "px; } </st" + "yle>";
+   for (var i = 0; i < 9; i++) {
+     for (var j = 0; j < 15; j++) {
+       _blocks += "<div class='unfold-box' style='transition-delay:" + _animation_delay + "s;'></div>"
+       _animation_delay += 0.03;
+     }
+     _blocks += "<div class='unfold-box' style='transition-delay:" + _animation_delay + "s;width:"+ ( _width - (_block_width * 15)) + "px;'></div>";
+     _animation_delay += 0.03;
+   }
+
+
+   _blocks += "<div id='loader'><span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span></div></div>";
+   document.getElementsByTagName("body")[0].insertAdjacentHTML('beforeend', _blocks);
+document.getElementsByTagName("body")[0].style.overflow = "hidden";
+   setTimeout(function() {
+
+     var _blocksDOM = document.querySelectorAll(".unfold-box");
+     for (var k = 0; k < _blocksDOM.length; k++) {
+       var block = _blocksDOM[k];
+       block.classList.add("clear");
+     }
+     document.getElementById("unfold-block").classList.add("clear");
+   }, 2000);
+
+   setTimeout(function() {
+     document.getElementById('loader').classList.add('clear');
+   }, 4000);
+
+   setTimeout(function() {
+     document.getElementById("unfold-block").remove();
+     document.getElementsByTagName("body")[0].style.overflow = "hidden";
+   }, 7000);
+
+  </script>
+</body>
+</html>
